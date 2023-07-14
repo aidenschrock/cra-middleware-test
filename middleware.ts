@@ -1,17 +1,5 @@
-export default function middleware() {
-    // Store the response so we can modify its headers
+import { next } from '@vercel/edge'
 
-    // Set custom header
-    // Response.headers.append(
-    //     'X-Content-Type-Options', 'nosniff'
-    // );
-
-    return new Response(null, {
-        headers: {
-            'x-middleware-next': '1',
-        },
-    })
-
-    // Return response
-    // return Response;
+export default function middleware(req) {
+    return next({ headers: { 'x-cra-example': 'Hello!', 'X-Content-Type-Options': 'nosniff' } })
 }
